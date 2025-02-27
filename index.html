@@ -50,10 +50,78 @@ nav .nav-links a {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
   background-color: #357abd;
+}
+
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+}
+
+.Btn .sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Btn .sign svg {
+  width: 17px;
+}
+
+.Btn .sign svg path {
+  fill: white;
+}
+
+.Btn .text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600;
+  transition-duration: .3s;
+  padding-bottom: 80%;
+}
+
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+.Btn:active {
+  transform: translate(2px ,2px);
 }
 
 /* Hero Section */
@@ -77,44 +145,14 @@ nav .nav-links a {
   color: #666;
 }
 
-/* Hero Section */
-  .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 10%;
-    background-color: #fff;
-  }
-  
-  .hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .hero-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: #666;
-  }
-  
-  .hero-image img {
-    max-width: 30%;
-    height: 30%;
-    animation: float 3s ease-in-out infinite;
-    position: relative;
-    top: 10%; 
-    left: 55%;
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
+.hero-image img {
+  max-width: 30%;
+  height: 30%;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  top: 10%; 
+  left: 55%;
+}
 
 @keyframes float {
   0%, 100% {
@@ -283,7 +321,9 @@ nav .nav-links a {
 }
 
 .join-button,
-.details-button {
+.details-button,
+.unjoin-button,
+.delete-group-button {
   background-color: #4a90e2;
   color: #fff;
   border: none;
@@ -291,10 +331,13 @@ nav .nav-links a {
   border-radius: 5px;
   cursor: pointer;
   margin: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .join-button:hover,
-.details-button:hover {
+.details-button:hover,
+.unjoin-button:hover,
+.delete-group-button:hover {
   background-color: #357abd;
 }
 
@@ -328,9 +371,6 @@ footer {
   background-color: #fff;
   border-top: 1px solid #ddd;
 }
-
-/* ADDED */
-
 
 /* Modal Tabs */
 .modal-tabs {
@@ -426,75 +466,6 @@ footer {
   padding: 15px 25px;
   border-radius: 5px;
   z-index: 1000;
-}
-
-/* From Uiverse.io by vinodjangid07 */
-.Btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition-duration: .3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: rgb(255, 65, 65);
-}
-
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: .3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign svg {
-  width: 17px;
-}
-
-.sign svg path {
-  fill: white;
-}
-/* text */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.5em;
-  font-weight: 600;
-  transition-duration: .3s;
-  padding-bottom: 80%;
-}
-/* hover effect on button width */
-.Btn:hover {
-  width: 125px;
-  border-radius: 40px;
-  transition-duration: .3s;
-}
-
-.Btn:hover .sign {
-  width: 30%;
-  transition-duration: .3s;
-  padding-left: 20px;
-}
-/* hover effect button's text */
-.Btn:hover .text {
-  opacity: 1;
-  width: 70%;
-  transition-duration: .3s;
-  padding-right: 10px;
-}
-/* button click effect*/
-.Btn:active {
-  transform: translate(2px ,2px);
 }
    </style>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -596,18 +567,6 @@ footer {
     </div>
   </section>
 
-  <!-- Create Group Section
-  <section id="create-group" class="create-group">
-    <h2>Create a Study Group</h2>
-    <form id="createGroupForm">
-      <input type="text" id="groupName" placeholder="Group Name" required>
-      <input type="text" id="groupFocus" placeholder="Focus Area (e.g., Math, Science)" required>
-      <textarea id="groupGoalsInput" placeholder="Enter goals (one per line)" required></textarea>
-      <textarea id="groupTasksInput" placeholder="Enter tasks (one per line)" required></textarea>
-      <button type="submit" class="cta-button">Create Group</button>
-    </form>
-  </section> -->
-
   <!-- Create Group Section -->
 <section id="create-group" class="create-group">
   <h2>Create a Study Group</h2>
@@ -623,8 +582,11 @@ footer {
   <!-- Study Groups Section -->
   <section id="groups" class="study-groups">
     <h2>Study Groups</h2>
-    <div class="group-list" id="groupList">
-      <!-- Groups will be dynamically added here -->
+    <div class="group-list" id="availableGroupList">
+      <!-- Available groups will be dynamically added here -->
+    </div>
+    <div class="group-list" id="joinedGroupList">
+      <!-- Joined groups will be dynamically added here -->
     </div>
   </section>
 
@@ -688,13 +650,16 @@ footer {
   <script>
     // Wait for DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
-      // Array to store created study groups
+      // Arrays to store created study groups
       let studyGroups = [];
+      let joinedGroups = [];
 
       // Function to render study groups
       function renderStudyGroups() {
-        const groupList = document.getElementById('groupList');
-        groupList.innerHTML = ''; // Clear existing groups
+        const availableGroupList = document.getElementById('availableGroupList');
+        const joinedGroupList = document.getElementById('joinedGroupList');
+        availableGroupList.innerHTML = ''; // Clear existing groups
+        joinedGroupList.innerHTML = ''; // Clear existing groups
 
         studyGroups.forEach((group, index) => {
           const groupCard = document.createElement('div');
@@ -703,18 +668,58 @@ footer {
             <h3>${group.name}</h3>
             <p>Focus: ${group.focus}</p>
             <p>Created by: ${group.ownerName}</p>
-            <button class="join-button" data-index="${index}">Join</button>
+            <p>Members: ${group.memberCount}</p>
+            <button class="join-button" data-id="${group.id}">Join</button>
             <button class="details-button" data-index="${index}">Details</button>
           `;
-          groupList.appendChild(groupCard);
+          availableGroupList.appendChild(groupCard);
+        });
+
+        joinedGroups.forEach((group, index) => {
+          const groupCard = document.createElement('div');
+          groupCard.className = 'group-card';
+          groupCard.innerHTML = `
+            <h3>${group.name}</h3>
+            <p>Focus: ${group.focus}</p>
+            <p>Created by: ${group.ownerName}</p>
+            <p>Members: ${group.memberCount}</p>
+            <button class="open-button" data-id="${group.id}">Open</button>
+            <button class="unjoin-button" data-id="${group.id}">Unjoin</button>
+            <button class="details-button" data-index="${index}">Details</button>
+            ${group.ownerId === window.auth.currentUser.uid ? `<button class="delete-group-button" data-id="${group.id}">Delete Group</button>` : ''}
+          `;
+          joinedGroupList.appendChild(groupCard);
         });
 
         // Add event listeners to the "Join" buttons
         document.querySelectorAll('.join-button').forEach(button => {
           button.addEventListener('click', (e) => {
-            const groupIndex = e.target.getAttribute('data-index');
-            const group = studyGroups[groupIndex];
-            joinGroup(group);
+            const groupId = e.target.getAttribute('data-id');
+            joinGroup(groupId);
+          });
+        });
+
+        // Add event listeners to the "Open" buttons
+        document.querySelectorAll('.open-button').forEach(button => {
+          button.addEventListener('click', (e) => {
+            const groupId = e.target.getAttribute('data-id');
+            openGroupChat(groupId);
+          });
+        });
+
+        // Add event listeners to the "Unjoin" buttons
+        document.querySelectorAll('.unjoin-button').forEach(button => {
+          button.addEventListener('click', (e) => {
+            const groupId = e.target.getAttribute('data-id');
+            unjoinGroup(groupId);
+          });
+        });
+
+        // Add event listeners to the "Delete Group" buttons
+        document.querySelectorAll('.delete-group-button').forEach(button => {
+          button.addEventListener('click', (e) => {
+            const groupId = e.target.getAttribute('data-id');
+            deleteGroup(groupId);
           });
         });
 
@@ -797,7 +802,7 @@ footer {
       };
 
       // Function to join a group
-      function joinGroup(group) {
+      function joinGroup(groupId) {
         const user = window.auth.currentUser;
         if (!user) {
           // Show login/signup modal
@@ -806,126 +811,95 @@ footer {
           return;
         }
 
-        // Add user to the group (this can be expanded to update the database)
-        console.log(`User ${user.uid} joined group ${group.name}`);
-        showJoinedPopup();
+        // Add user to the group in the database
+        window.db.collection('groups').doc(groupId).collection('members').doc(user.uid).set({
+          joinedAt: new Date()
+        }).then(() => {
+          console.log(`User ${user.uid} joined group ${groupId}`);
+          showJoinedPopup();
+          fetchGroups(); // Refresh the group lists
+        }).catch((error) => {
+          console.error('Error joining group:', error);
+          alert('Error joining group. Please try again.');
+        });
       }
 
-      // Switch between Login and Signup forms
-      document.getElementById('loginTab').addEventListener('click', () => {
-        document.getElementById('loginTab').classList.add('active');
-        document.getElementById('signupTab').classList.remove('active');
-        document.getElementById('loginForm').classList.add('active');
-        document.getElementById('signupForm').classList.remove('active');
-      });
-
-      document.getElementById('signupTab').addEventListener('click', () => {
-        document.getElementById('signupTab').classList.add('active');
-        document.getElementById('loginTab').classList.remove('active');
-        document.getElementById('signupForm').classList.add('active');
-        document.getElementById('loginForm').classList.remove('active');
-      });
-
-      // Open Login/Signup Modal
-      document.getElementById('getStarted').addEventListener('click', () => {
-        document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('loginTab').click(); // Default to login form
-      });
-
-      document.getElementById('openModal').addEventListener('click', () => {
-        document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('loginTab').click(); // Default to login form
-      });
-
-      // Close Modal
-      document.querySelectorAll('.close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', () => {
-          document.querySelectorAll('.modal').forEach(modal => {
-            modal.style.display = 'none';
-          });
-        });
-      });
-
-      // Close Modal when clicking outside
-      window.addEventListener('click', (event) => {
-        if (event.target.classList.contains('modal')) {
-          event.target.style.display = 'none';
-        }
-      });
-
-      // Create Group Form Submission
-      document.getElementById('createGroupForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Check if user is logged in
+      // Function to unjoin a group
+      function unjoinGroup(groupId) {
         const user = window.auth.currentUser;
         if (!user) {
-          // Show login/signup modal
-          document.getElementById('loginModal').style.display = 'flex';
-          document.getElementById('loginTab').click(); // Default to login form
-
-          // Retain form data
-          const groupName = document.getElementById('groupName').value;
-          const groupFocus = document.getElementById('groupFocus').value;
-          const groupGoals = document.getElementById('groupGoalsInput').value;
-          const groupTasks = document.getElementById('groupTasksInput').value;
-
-          // Listen for successful login/signup
-          const authStateListener = window.auth.onAuthStateChanged((user) => {
-            if (user) {
-              // User logged in, restore form data
-              document.getElementById('groupName').value = groupName;
-              document.getElementById('groupFocus').value = groupFocus;
-              document.getElementById('groupGoalsInput').value = groupGoals;
-              document.getElementById('groupTasksInput').value = groupTasks;
-
-              // Remove the listener
-              authStateListener();
-
-              // Submit the form again
-              document.getElementById('createGroupForm').dispatchEvent(new Event('submit'));
-            }
-          });
+          alert('You must be logged in to unjoin a group!');
           return;
         }
 
-        const groupName = document.getElementById('groupName').value;
-        const groupFocus = document.getElementById('groupFocus').value;
-        const groupGoals = document.getElementById('groupGoalsInput').value.split('\n').filter(goal => goal.trim() !== '');
-        const groupTasks = document.getElementById('groupTasksInput').value.split('\n').filter(task => task.trim() !== '');
+        // Remove user from the group in the database
+        window.db.collection('groups').doc(groupId).collection('members').doc(user.uid).delete().then(() => {
+          console.log(`User ${user.uid} unjoined group ${groupId}`);
+          fetchGroups(); // Refresh the group lists
+        }).catch((error) => {
+          console.error('Error unjoining group:', error);
+          alert('Error unjoining group. Please try again.');
+        });
+      }
 
-        // Add the new group to the database
-        const groupData = {
-          name: groupName,
-          focus: groupFocus,
-          goals: groupGoals,
-          tasks: groupTasks,
-          ownerId: user.uid,
-          ownerName: user.displayName || user.email // Use displayName if available, otherwise email
-        };
+      // Function to delete a group
+      function deleteGroup(groupId) {
+        const user = window.auth.currentUser;
+        if (!user) {
+          alert('You must be logged in to delete a group!');
+          return;
+        }
 
-        window.db.collection('groups').add(groupData)
-          .then((docRef) => {
-            console.log('Group created with ID:', docRef.id);
-            // Add the new group to the local array
-            studyGroups.push(groupData);
-            // Render the updated list of groups
-            renderStudyGroups();
-            // Reset the form
-            document.getElementById('createGroupForm').reset();
-          })
-          .catch((error) => {
-            console.error('Error adding group:', error);
-            alert('Error creating group. Please try again.');
-          });
-      });
+        // Check if the user is the owner of the group
+        window.db.collection('groups').doc(groupId).get().then((doc) => {
+          if (doc.exists && doc.data().ownerId === user.uid) {
+            // Delete the group
+            window.db.collection('groups').doc(groupId).delete().then(() => {
+              console.log(`Group ${groupId} deleted`);
+              fetchGroups(); // Refresh the group lists
+            }).catch((error) => {
+              console.error('Error deleting group:', error);
+              alert('Error deleting group. Please try again.');
+            });
+          } else {
+            alert('You are not authorized to delete this group!');
+          }
+        }).catch((error) => {
+          console.error('Error fetching group details:', error);
+          alert('Error fetching group details. Please try again.');
+        });
+      }
+
+      // Function to open group chat
+      function openGroupChat(groupId) {
+        window.location.href = `group.html?groupId=${groupId}`;
+      }
 
       // Fetch groups from the database
       function fetchGroups() {
+        const user = window.auth.currentUser;
+        if (!user) {
+          console.error('User not logged in');
+          return;
+        }
+
         window.db.collection('groups').get()
           .then((querySnapshot) => {
-            studyGroups = querySnapshot.docs.map(doc => doc.data());
-            renderStudyGroups();
+            studyGroups = [];
+            joinedGroups = [];
+            querySnapshot.forEach(doc => {
+              const groupData = { id: doc.id, ...doc.data() };
+              window.db.collection('groups').doc(doc.id).collection('members').get()
+                .then(memberSnapshot => {
+                  groupData.memberCount = memberSnapshot.size;
+                  if (memberSnapshot.docs.some(memberDoc => memberDoc.id === user.uid)) {
+                    joinedGroups.push(groupData);
+                  } else {
+                    studyGroups.push(groupData);
+                  }
+                  renderStudyGroups();
+                });
+            });
           })
           .catch((error) => {
             console.error('Error fetching groups:', error);
@@ -1013,6 +987,7 @@ footer {
                 console.log('User logged in successfully:', userCredential.user.uid);
                 alert('User logged in successfully!');
                 document.getElementById('loginModal').style.display = 'none';
+                fetchGroups(); // Fetch groups after login
               })
               .catch((error) => {
                 console.error('Error logging in:', error);
@@ -1044,6 +1019,7 @@ footer {
             console.log('User is signed in:', user.uid);
             document.getElementById('openModal').style.display = 'none';
             document.getElementById('signOutButton').style.display = 'block';
+            fetchGroups(); // Fetch groups when user is signed in
           } else {
             // User is signed out
             console.log('User is signed out');

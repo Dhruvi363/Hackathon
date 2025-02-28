@@ -1354,7 +1354,7 @@ ul li input[type="checkbox"] {
       }
 
       // Function to save tasks to the database
-      function saveTask(task, type) {
+      function saveTask(goal, type, tasks) {
         const user = window.auth.currentUser;
         if (!user) {
           alert('You must be logged in to add a task!');
@@ -1362,8 +1362,8 @@ ul li input[type="checkbox"] {
         }
 
         const taskData = {
-          task: task,
-          completed: false,
+          goal: goal,
+          tasks: tasks.map(task => ({ task: task, completed: false })),
           type: type,
           createdAt: new Date(),
           userId: user.uid
@@ -1417,8 +1417,15 @@ ul li input[type="checkbox"] {
         personalTasks.forEach((task) => {
           const taskItem = document.createElement('li');
           taskItem.innerHTML = `
-            <input type="checkbox" id="personal-task-${task.id}" ${task.completed ? 'checked' : ''} onchange="updateTaskStatus('${task.id}', 'personal')">
-            <label for="personal-task-${task.id}">${task.task}</label>
+            <h4>${task.goal}</h4>
+            <ul>
+              ${task.tasks.map((t, index) => `
+                <li>
+                  <input type="checkbox" id="personal-task-${task.id}-${index}" ${t.completed ? 'checked' : ''} onchange="updateTaskStatus('${task.id}', 'personal', ${index})">
+                  <label for="personal-task-${task.id}-${index}">${t.task}</label>
+                </li>
+              `).join('')}
+            </ul>
           `;
           personalGoalsList.appendChild(taskItem);
         });
@@ -1426,8 +1433,15 @@ ul li input[type="checkbox"] {
         groupTasks.forEach((task) => {
           const taskItem = document.createElement('li');
           taskItem.innerHTML = `
-            <input type="checkbox" id="group-task-${task.id}" ${task.completed ? 'checked' : ''} onchange="updateTaskStatus('${task.id}', 'group')">
-            <label for="group-task-${task.id}">${task.task}</label>
+            <h4>${task.goal}</h4>
+            <ul>
+              ${task.tasks.map((t, index) => `
+                <li>
+                  <input type="checkbox" id="group-task-${task.id}-${index}" ${t.completed ? 'checked' : ''} onchange="updateTaskStatus('${task.id}', 'group', ${index})">
+                  <label for="group-task-${task.id}-${index}">${t.task}</label>
+                </li>
+              `).join('')}
+            </ul>
           `;
           groupGoalsList.appendChild(taskItem);
         });
@@ -1436,24 +1450,35 @@ ul li input[type="checkbox"] {
       }
 
       // Function to update task status
-      window.updateTaskStatus = function(taskId, type) {
+      window.updateTaskStatus = function(taskId, type, taskIndex) {
         const user = window.auth.currentUser;
         if (!user) {
           alert('You must be logged in to update a task!');
           return;
         }
 
-        const taskCheckbox = document.getElementById(`${type}-task-${taskId}`);
+        const taskCheckbox = document.getElementById(`${type}-task-${taskId}-${taskIndex}`);
         const completed = taskCheckbox.checked;
 
-        window.db.collection('tasks').doc(taskId).update({ completed: completed })
-          .then(() => {
-            console.log('Task status updated successfully:', taskId);
-            updateProgress();
+        window.db.collection('tasks').doc(taskId).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const taskData = doc.data();
+              taskData.tasks[taskIndex].completed = completed;
+              window.db.collection('tasks').doc(taskId).update({ tasks: taskData.tasks })
+                .then(() => {
+                  console.log('Task status updated successfully:', taskId);
+                  updateProgress();
+                })
+                .catch((error) => {
+                  console.error('Error updating task status:', error);
+                  alert('Error updating task status. Please try again.');
+                });
+            }
           })
           .catch((error) => {
-            console.error('Error updating task status:', error);
-            alert('Error updating task status. Please try again.');
+            console.error('Error fetching task:', error);
+            alert('Error fetching task. Please try again.');
           });
       }
 
@@ -1555,6 +1580,61 @@ ul li input[type="checkbox"] {
 
       // Fetch tasks from the database on load
       fetchTasks();
+
+      // Create Group
+      document.getElementById('createGroupForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const groupName = document.getElementById('groupName').value;
+        const groupFocus = document.getElementById('groupFocus').value;
+        const groupGoals = document.getElementById('groupGoalsInput').value.split('\n');
+        const groupTasks = document.getElementById('groupTasksInput').value.split('\n');
+        saveGroup(groupName, groupFocus, groupGoals, groupTasks);
+      });
+
+      // Add Personal Goal
+      document.getElementById('personalGoalsForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const personalGoal = document.getElementById('personalGoal').value;
+        const personalTasks = document.getElementById('personalTasks').value.split('\n');
+        saveTask(personalGoal, 'personal', personalTasks);
+      });
+
+      // Add Group Goal
+      document.getElementById('groupGoalsForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const groupGoal = document.getElementById('groupGoal').value;
+        const groupTasks = document.getElementById('groupTasks').value.split('\n');
+        saveTask(groupGoal, 'group', groupTasks);
+      });
+
+      // Function to save group to the database
+      function saveGroup(name, focus, goals, tasks) {
+        const user = window.auth.currentUser;
+        if (!user) {
+          alert('You must be logged in to create a group!');
+          return;
+        }
+      
+        const groupData = {
+          name: name,
+          focus: focus,
+          goals: goals,
+          tasks: tasks,
+          ownerId: user.uid,
+          ownerName: user.displayName || user.email,
+          createdAt: new Date()
+        };
+      
+        window.db.collection('groups').add(groupData)
+          .then(() => {
+            console.log('Group created successfully:', groupData);
+            fetchGroups(); // Refresh the group lists
+          })
+          .catch((error) => {
+            console.error('Error creating group:', error);
+            alert('Error creating group. Please try again.');
+          });
+      }
     });
   </script>
 </body>

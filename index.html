@@ -1042,6 +1042,48 @@ footer {
         // Fetch groups from the database on load
         fetchGroups();
       }
+
+      // Open Login/Signup Modal
+      document.getElementById('getStarted').addEventListener('click', () => {
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('loginTab').click(); // Default to login form
+      });
+
+      document.getElementById('openModal').addEventListener('click', () => {
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('loginTab').click(); // Default to login form
+      });
+
+      // Close Modal
+      document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+          document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';
+          });
+        });
+      });
+
+      // Close Modal when clicking outside
+      window.addEventListener('click', (event) => {
+        if (event.target.classList.contains('modal')) {
+          event.target.style.display = 'none';
+        }
+      });
+
+      // Switch between Login and Signup forms
+      document.getElementById('loginTab').addEventListener('click', () => {
+        document.getElementById('loginTab').classList.add('active');
+        document.getElementById('signupTab').classList.remove('active');
+        document.getElementById('loginForm').classList.add('active');
+        document.getElementById('signupForm').classList.remove('active');
+      });
+
+      document.getElementById('signupTab').addEventListener('click', () => {
+        document.getElementById('signupTab').classList.add('active');
+        document.getElementById('loginTab').classList.remove('active');
+        document.getElementById('signupForm').classList.add('active');
+        document.getElementById('loginForm').classList.remove('active');
+      });
     });
   </script>
 </body>

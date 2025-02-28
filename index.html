@@ -146,12 +146,9 @@ nav .nav-links a {
 }
 
 .hero-image img {
-  max-width: 30%;
-  height: 30%;
+  max-width: 100%;
+  height: auto;
   animation: float 3s ease-in-out infinite;
-  position: relative;
-  top: 10%; 
-  left: 55%;
 }
 
 @keyframes float {
@@ -212,7 +209,7 @@ nav .nav-links a {
   color: #666;
 }
 
-/* Create Group Section - Updated Styles */
+/* Create Group Section */
 .create-group {
   padding: 50px 10%;
   background-color: #fff;
@@ -221,49 +218,23 @@ nav .nav-links a {
 
 .create-group h2 {
   font-size: 36px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: #333;
-}
-
-.create-group form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .create-group input,
 .create-group textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
+  max-width: 40rem;
+  padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
   resize: vertical;
 }
 
 .create-group textarea {
   height: 100px;
-}
-
-.create-group button {
-  width: 100%;
-  padding: 12px;
-  background-color: #4a90e2;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.create-group button:hover {
-  background-color: #357abd;
 }
 
 /* Study Groups Section */
@@ -373,35 +344,6 @@ footer {
   border-top: 1px solid #ddd;
 }
 
-/* Modal Tabs */
-.modal-tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.modal-tabs button {
-  background-color: #ddd;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.modal-tabs button.active {
-  background-color: #4a90e2;
-  color: #fff;
-}
-
-.form-content {
-  display: none;
-}
-
-.form-content.active {
-  display: block;
-}
-
-/* Popup */
 /* Modal Styles */
 .modal {
   display: none;
@@ -441,7 +383,7 @@ footer {
 .modal-content input,
 .modal-content textarea {
   width: 100%;
-  padding: 5px;
+  padding: 2px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -456,17 +398,250 @@ footer {
   background-color: #5a6268;
 }
 
+/* Checkbox Styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+  align-items: center;
+}
+
+ul li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
 /* Joined Popup */
 .popup {
   display: none;
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   right: 20px;
   background-color: #4a90e2;
-  color: white;
-  padding: 15px 25px;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+}
+
+/* Goals & Tasks Page Styles */
+.goals-section {
+  padding: 40px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.goals-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.goals-section input,
+.goals-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.goals-section textarea {
+  height: 100px;
+}
+
+.goal-card {
+  background-color: #f4f4f9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.goal-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.goal-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.goal-card ul li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.goal-card ul li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.progress-section {
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progress-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.progress-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.progress-cards .card {
+  flex: 1;
+  background-color: #f4f4f9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.progress-cards .card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Display Goals & Tasks Section */
+.display-goals {
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.display-goals h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.goals-container {
+  display: flex;
+  gap: 20px;
+}
+
+.personal-goals,
+.group-goals {
+  flex: 1;
+  background-color: #f4f4f9;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.personal-goals h3,
+.group-goals h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.goal-item {
+  margin-bottom: 15px;
+}
+
+.goal-item h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #4a90e2;
+}
+
+.task-item {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.task-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.task-item label {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Pomodoro Timer Section */
+.pomodoro-timer {
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pomodoro-timer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.timer-container {
+  text-align: center;
+}
+
+.timer-display {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #4a90e2;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.timer-settings {
+  margin-bottom: 20px;
+}
+
+.timer-settings label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.timer-settings input {
+  width: 60px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.focus-mode {
+  margin-top: 20px;
+}
+
+.focus-mode h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.focus-mode p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
 }
    </style>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -590,6 +765,79 @@ footer {
       <!-- Joined groups will be dynamically added here -->
     </div>
   </section>
+
+  <!-- Personal Goals & Tasks Section -->
+<section id="personal" class="goals-section" style="display: none;">
+  <h2>Personal Goals & Tasks</h2>
+  <form id="personalGoalsForm">
+    <input type="text" id="personalGoal" placeholder="Enter a personal goal" required>
+    <textarea id="personalTasks" placeholder="Enter tasks for this goal (one per line)" required></textarea>
+    <button type="submit" class="cta-button">Add Goal</button>
+  </form>
+  <div class="goals-list" id="personalGoalsList">
+    <!-- Personal goals and tasks will be dynamically added here -->
+  </div>
+</section>
+
+<!-- Group Goals & Tasks Section -->
+<section id="group" class="goals-section" style="display: none;">
+  <h2>Group Goals & Tasks</h2>
+  <form id="groupGoalsForm">
+    <input type="text" id="groupGoal" placeholder="Enter a group goal" required>
+    <textarea id="groupTasks" placeholder="Enter tasks for this goal (one per line)" required></textarea>
+    <button type="submit" class="cta-button">Add Goal</button>
+  </form>
+  <div class="goals-list" id="groupGoalsList">
+    <!-- Group goals and tasks will be dynamically added here -->
+  </div>
+</section>
+
+<!-- Progress Tracking Section -->
+<section class="progress-section" style="display: none;">
+  <h2>Progress Tracking</h2>
+  <div class="progress-cards">
+    <div class="card">
+      <h3>Personal Progress</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="personalProgressFill"></div>
+      </div>
+      <p id="personalProgressText">0% completed</p>
+    </div>
+    <div class="card">
+      <h3>Group Progress</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="groupProgressFill"></div>
+      </div>
+      <p id="groupProgressText">0% completed</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pomodoro Timer Section -->
+<section id="pomodoro-timer" class="pomodoro-timer">
+  <h2>Pomodoro Timer</h2>
+  <div class="timer-container">
+    <div class="timer-display">
+      <span id="timer">25:00</span>
+    </div>
+    <div class="timer-controls">
+      <button id="startTimer" class="cta-button">Start</button>
+      <button id="pauseTimer" class="cta-button">Pause</button>
+      <button id="resetTimer" class="cta-button">Reset</button>
+    </div>
+    <div class="timer-settings">
+      <label for="studyTime">Study Time (minutes):</label>
+      <input type="number" id="studyTime" value="25" min="1">
+      <label for="breakTime">Break Time (minutes):</label>
+      <input type="number" id="breakTime" value="5" min="1">
+    </div>
+  </div>
+  <div class="focus-mode">
+    <h3>Focus Mode</h3>
+    <p>Block distracting websites during study sessions.</p>
+    <button id="enableFocusMode" class="cta-button">Enable Focus Mode</button>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
@@ -949,6 +1197,7 @@ footer {
                 console.log('User data stored in Firestore');
                 alert('User signed up successfully!');
                 document.getElementById('loginModal').style.display = 'none';
+                showGoalsSections(); // Show goals sections after signup
               })
               .catch((error) => {
                 console.error('Error signing up:', error);
@@ -989,6 +1238,7 @@ footer {
                 alert('User logged in successfully!');
                 document.getElementById('loginModal').style.display = 'none';
                 fetchGroups(); // Fetch groups after login
+                showGoalsSections(); // Show goals sections after login
               })
               .catch((error) => {
                 console.error('Error logging in:', error);
@@ -1021,11 +1271,13 @@ footer {
             document.getElementById('openModal').style.display = 'none';
             document.getElementById('signOutButton').style.display = 'block';
             fetchGroups(); // Fetch groups when user is signed in
+            showGoalsSections(); // Show goals sections when user is signed in
           } else {
             // User is signed out
             console.log('User is signed out');
             document.getElementById('openModal').style.display = 'block';
             document.getElementById('signOutButton').style.display = 'none';
+            hideGoalsSections(); // Hide goals sections when user is signed out
           }
         });
 
@@ -1034,6 +1286,7 @@ footer {
           window.auth.signOut().then(() => {
             console.log('User signed out successfully.');
             alert('User signed out successfully!');
+            hideGoalsSections(); // Hide goals sections after sign out
           }).catch((error) => {
             console.error('Error signing out:', error);
             alert(`Error signing out: ${error.message}`);
@@ -1085,6 +1338,223 @@ footer {
         document.getElementById('signupForm').classList.add('active');
         document.getElementById('loginForm').classList.remove('active');
       });
+
+      // Function to show goals sections
+      function showGoalsSections() {
+        document.getElementById('personal').style.display = 'block';
+        document.getElementById('group').style.display = 'block';
+        document.querySelector('.progress-section').style.display = 'block';
+      }
+
+      // Function to hide goals sections
+      function hideGoalsSections() {
+        document.getElementById('personal').style.display = 'none';
+        document.getElementById('group').style.display = 'none';
+        document.querySelector('.progress-section').style.display = 'none';
+      }
+
+      // Function to save tasks to the database
+      function saveTask(task, type) {
+        const user = window.auth.currentUser;
+        if (!user) {
+          alert('You must be logged in to add a task!');
+          return;
+        }
+
+        const taskData = {
+          task: task,
+          completed: false,
+          type: type,
+          createdAt: new Date(),
+          userId: user.uid
+        };
+
+        window.db.collection('tasks').add(taskData)
+          .then(() => {
+            console.log('Task added successfully:', taskData);
+            fetchTasks(); // Refresh the task lists
+          })
+          .catch((error) => {
+            console.error('Error adding task:', error);
+            alert('Error adding task. Please try again.');
+          });
+      }
+
+      // Function to fetch tasks from the database
+      function fetchTasks() {
+        const user = window.auth.currentUser;
+        if (!user) {
+          console.error('User not logged in');
+          return;
+        }
+
+        window.db.collection('tasks').where('userId', '==', user.uid).get()
+          .then((querySnapshot) => {
+            const personalTasks = [];
+            const groupTasks = [];
+            querySnapshot.forEach(doc => {
+              const taskData = { id: doc.id, ...doc.data() };
+              if (taskData.type === 'personal') {
+                personalTasks.push(taskData);
+              } else if (taskData.type === 'group') {
+                groupTasks.push(taskData);
+              }
+            });
+            renderTasks(personalTasks, groupTasks);
+          })
+          .catch((error) => {
+            console.error('Error fetching tasks:', error);
+          });
+      }
+
+      // Function to render tasks
+      function renderTasks(personalTasks, groupTasks) {
+        const personalGoalsList = document.getElementById('personalGoalsList');
+        const groupGoalsList = document.getElementById('groupGoalsList');
+        personalGoalsList.innerHTML = ''; // Clear existing tasks
+        groupGoalsList.innerHTML = ''; // Clear existing tasks
+
+        personalTasks.forEach((task) => {
+          const taskItem = document.createElement('li');
+          taskItem.innerHTML = `
+            <input type="checkbox" id="personal-task-${task.id}" ${task.completed ? 'checked' : ''} onchange="updateTaskStatus('${task.id}', 'personal')">
+            <label for="personal-task-${task.id}">${task.task}</label>
+          `;
+          personalGoalsList.appendChild(taskItem);
+        });
+
+        groupTasks.forEach((task) => {
+          const taskItem = document.createElement('li');
+          taskItem.innerHTML = `
+            <input type="checkbox" id="group-task-${task.id}" ${task.completed ? 'checked' : ''} onchange="updateTaskStatus('${task.id}', 'group')">
+            <label for="group-task-${task.id}">${task.task}</label>
+          `;
+          groupGoalsList.appendChild(taskItem);
+        });
+
+        updateProgress();
+      }
+
+      // Function to update task status
+      window.updateTaskStatus = function(taskId, type) {
+        const user = window.auth.currentUser;
+        if (!user) {
+          alert('You must be logged in to update a task!');
+          return;
+        }
+
+        const taskCheckbox = document.getElementById(`${type}-task-${taskId}`);
+        const completed = taskCheckbox.checked;
+
+        window.db.collection('tasks').doc(taskId).update({ completed: completed })
+          .then(() => {
+            console.log('Task status updated successfully:', taskId);
+            updateProgress();
+          })
+          .catch((error) => {
+            console.error('Error updating task status:', error);
+            alert('Error updating task status. Please try again.');
+          });
+      }
+
+      // Function to update progress bar
+      window.updateProgress = function() {
+        const personalTasks = document.querySelectorAll('#personalGoalsList input[type="checkbox"]');
+        const groupTasks = document.querySelectorAll('#groupGoalsList input[type="checkbox"]');
+        const totalTasks = personalTasks.length + groupTasks.length;
+
+        let completedTasks = 0;
+        personalTasks.forEach((checkbox) => {
+          if (checkbox.checked) completedTasks++;
+        });
+        groupTasks.forEach((checkbox) => {
+          if (checkbox.checked) completedTasks++;
+        });
+
+        const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+        const personalProgressFill = document.getElementById('personalProgressFill');
+        const personalProgressText = document.getElementById('personalProgressText');
+        const groupProgressFill = document.getElementById('groupProgressFill');
+        const groupProgressText = document.getElementById('groupProgressText');
+
+        personalProgressFill.style.width = `${progress}%`;
+        personalProgressText.textContent = `${progress}% completed`;
+        groupProgressFill.style.width = `${progress}%`;
+        groupProgressText.textContent = `${progress}% completed`;
+      }
+
+      // Pomodoro Timer
+      let timer;
+      let isRunning = false;
+      let isBreak = false;
+      let studyTime = 25 * 60;
+      let breakTime = 5 * 60;
+      let timeLeft = studyTime;
+
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      }
+
+      function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
+        timer = setInterval(() => {
+          timeLeft--;
+          updateTimerDisplay();
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+            isRunning = false;
+            isBreak = !isBreak;
+            timeLeft = isBreak ? breakTime : studyTime;
+            alert(isBreak ? 'Break time!' : 'Study time!');
+            startTimer();
+          }
+        }, 1000);
+      }
+
+      function pauseTimer() {
+        clearInterval(timer);
+        isRunning = false;
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        isRunning = false;
+        isBreak = false;
+        timeLeft = studyTime;
+        updateTimerDisplay();
+      }
+
+      document.getElementById('startTimer').addEventListener('click', startTimer);
+      document.getElementById('pauseTimer').addEventListener('click', pauseTimer);
+      document.getElementById('resetTimer').addEventListener('click', resetTimer);
+
+      document.getElementById('studyTime').addEventListener('change', (e) => {
+        studyTime = e.target.value * 60;
+        if (!isRunning) {
+          timeLeft = studyTime;
+          updateTimerDisplay();
+        }
+      });
+
+      document.getElementById('breakTime').addEventListener('change', (e) => {
+        breakTime = e.target.value * 60;
+      });
+
+      // Focus Mode
+      document.getElementById('enableFocusMode').addEventListener('click', () => {
+        if (navigator.doNotDisturb) {
+          navigator.doNotDisturb.enable();
+          alert('Focus mode enabled: Notifications and calls are muted.');
+        } else {
+          alert('Focus mode is not supported on this device.');
+        }
+      });
+
+      // Fetch tasks from the database on load
+      fetchTasks();
     });
   </script>
 </body>
